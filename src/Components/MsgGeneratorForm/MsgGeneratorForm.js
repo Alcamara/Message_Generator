@@ -1,21 +1,57 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Form.css";
 
 export const MsgGeneratorForm = () => {
+  //guest list and useEffect
   const [guestList, setGuestList] = useState(null);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/guests",
+    })
+      .then((results) => {
+        setGuestList(results.data.guests);
+      })
+      .catch((err) => {
+        console.log(`Error with axios get: ${err.response.data}`);
+      });
+  }, []);
+
+  // companies state and useEffect
   const [companies, setCompanies] = useState(null);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/companies",
+    })
+      .then((results) => {
+        setCompanies(results.data.companies);
+      })
+      .catch((err) => {
+        console.log(`Error with axios get: ${err.response.data}`);
+      });
+  }, []);
+  // msgCategoreis and useEffect
   const [msgCategories, setMsgCategories] = useState(null);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/categories",
+    })
+      .then((results) => {
+        setMsgCategories(results.data.categories);
+      })
+      .catch((err) => {
+        console.log(`Error with axios get: ${err.response.data}`);
+      });
+  }, []);
 
   const [form, setForm] = useState({
     guestId: "0",
     companyId: "0",
     msgCategoryId: "0",
   });
-
-  useEffect(() => {
-    console.log(form);
-  }, []);
 
   const updateGuestId = (event) => {
     console.log(event.target.value);
@@ -50,14 +86,14 @@ export const MsgGeneratorForm = () => {
       },
     })
       .then((response) => {
-        console.log(`Post send: ${form}`);
+        console.log(`Post send: ${response.status}`);
       })
       .catch((err) => {
         console.log(`Error with post request: ${err}`);
       });
   };
 
-  return (
+  const formSection = (
     <div className="form">
       <h2>Generate Msg</h2>
       <div className="default">
@@ -66,10 +102,13 @@ export const MsgGeneratorForm = () => {
             <p>Guest list</p>
             <select value={form.guestId} onChange={updateGuestId} name="guest">
               <option value="0">Select Guest</option>
-              <option value="1">Ryu</option>
-              <option value="2">Ken</option>
-              <option value="3">Luke</option>
-              <option value="4">Ibuki</option>
+
+              {guestList &&
+                guestList.map(({ firstName, id, lastName }) => (
+                  <option key={firstName + " " + lastName} value={id}>
+                    {firstName + " " + lastName}
+                  </option>
+                ))}
             </select>
           </label>
         </div>
@@ -82,9 +121,12 @@ export const MsgGeneratorForm = () => {
               name="companies"
             >
               <option value="0">Select Hotel</option>
-              <option value="1">Hillton</option>
-              <option value="2">Holiday Inn</option>
-              <option value="3">Radisson</option>
+              {companies &&
+                companies.map(({ name, id }) => (
+                  <option key={name} value={id}>
+                    {name}
+                  </option>
+                ))}
             </select>
           </label>
         </div>
@@ -93,21 +135,29 @@ export const MsgGeneratorForm = () => {
             <p>Type of Msg</p>
             <select onChange={updateMsgId} value={form.msgCategoryId}>
               <option value="0">Category</option>
-              <option value="1">Welcome</option>
-              <option value="2">Remainder</option>
-              <option value="3">Thank You</option>
+              {msgCategories &&
+                msgCategories.map(({ category, id }) => (
+                  <option key={category} value={id}>
+                    {category}
+                  </option>
+                ))}
             </select>
           </label>
         </div>
       </div>
       <button
         onClick={() => {
-          console.log(form);
           sendForm();
         }}
       >
         Generate Msg
       </button>
     </div>
+  );
+
+  return guestList == null && companies == null && msgCategories == null ? (
+    <div>Loading</div>
+  ) : (
+    formSection
   );
 };
