@@ -32,7 +32,7 @@ export const MsgGeneratorForm = () => {
         console.log(`Error with axios get: ${err.response.data}`);
       });
   }, []);
-  // msgCategoreis and useEffect
+  // msgCategories and useEffect
   const [msgCategories, setMsgCategories] = useState(null);
   useEffect(() => {
     axios({
@@ -134,7 +134,7 @@ export const MsgGeneratorForm = () => {
           <label>
             <p>Type of Msg</p>
             <select onChange={updateMsgId} value={form.msgCategoryId}>
-              <option value="0">Category</option>
+              <option value="0"> Select Category</option>
               {msgCategories &&
                 msgCategories.map(({ category, id }) => (
                   <option key={category} value={id}>
