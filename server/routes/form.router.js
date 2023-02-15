@@ -6,13 +6,12 @@ const guests = require("../../public/Guests.json");
 const companies = require("../../public/Companies.json");
 const msgTemplates = require("../../public/MsgTemplates.json");
 
-router.get("/form", (req, res) => {
+router.get("/", (req, res) => {
   const guestList = [];
-  const companiesList = [];
+  const listOfCompanies = [];
   const msgCategoryList = [];
 
-  console.log(msgTemplates);
-
+  //loop through g
   for (let guest of guests) {
     guestList.push({
       id: guest.id,
@@ -22,7 +21,7 @@ router.get("/form", (req, res) => {
   }
 
   for (let company of companies) {
-    companiesList.push({
+    listOfCompanies.push({
       id: company.id,
       name: company.company,
     });
@@ -37,7 +36,7 @@ router.get("/form", (req, res) => {
 
   res.send({
     guests: guestList,
-    companies: companiesList,
+    companies: listOfCompanies,
     category: msgCategoryList,
   });
 });
