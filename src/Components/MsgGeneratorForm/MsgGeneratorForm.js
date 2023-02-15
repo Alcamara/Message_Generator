@@ -95,7 +95,7 @@ export const MsgGeneratorForm = () => {
 
   const formSection = (
     <div className="form">
-      <h2>Generate Msg</h2>
+      <h2>Guest Msg Generator</h2>
       <div className="default">
         <div className="dropdown">
           <label>
