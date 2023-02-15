@@ -101,6 +101,15 @@ router.post("/form", (req, res) => {
   res.send({ generateMsg: msg });
 });
 
+router.post("/form2", (req, res) => {
+  const guestId = req.body.guestId;
+  const companyId = req.body.companyId;
+  const text = req.body.text;
+
+  console.log(guestId, companyId, text);
+  res.sendStatus(200);
+});
+
 //
 function getTimeOfDate(currentTimeInHour, companyTimeZone) {
   companyCurrentTimeInHour = currentTimeInHour;
@@ -139,8 +148,7 @@ function generateMsg(template, company, guest, timeOfDay, msgCategoryId) {
       return template
         .replace("timeOfDay", timeOfDay)
         .replace("firstName", guest.firstName)
-        .replace("company", company.company)
-        .replace("endTimestamp", Date(guest.reservation.endTimestamp)); //
+        .replace("company", company.company); //
 
     case "3":
       return template

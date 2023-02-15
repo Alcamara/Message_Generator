@@ -17,3 +17,21 @@
 .dropdown {
   padding: 10px 20px;
 }
+
+.dropdown select {
+  width: 180px;
+}
+
+.text {
+  margin: 20px 0;
+}
+
+.text input {
+  width: 60%;
+}
+
+@media screen and (max-width: 625px) {
+  .default {
+    flex-direction: column;
+  }
+}
