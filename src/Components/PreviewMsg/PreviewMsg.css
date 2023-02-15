@@ -1,0 +1,16 @@
+.preview-section {
+  padding: 40px 0;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.preview-section_content {
+  font-size: 1.4rem;
+  text-align: center;
+  width: 60%;
+  padding: 1em;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+}
