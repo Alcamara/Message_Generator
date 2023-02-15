@@ -2,16 +2,16 @@
   {
     "id": 1,
     "category": "Welcome",
-    "msg": "Good, timeOfDay firstName, and welcome to company! Room roomNumber is now ready for you. Enjoy your stay, and let us know if you need anything."
+    "msg": "Good timeOfDay firstName, and welcome to company! Room roomNumber is now ready for you. Enjoy your stay, and let us know if you need anything."
   },
   {
     "id": 2,
     "category": "Checkout Remainder",
-    "msg": "Good, timeOfDay firstName, and I hope you are enjoying your stay with company! Just a friendly remainder that checkout is at endTimestamp. If you need to extend your stay please reach out the front deck. Enjoy the rest of your stay"
+    "msg": "Good timeOfDay firstName, and I hope you are enjoying your stay with company! Just a friendly remainder that checkout is at endTimestamp. If you need to extend your stay please reach out the front deck. Enjoy the rest of your stay"
   },
   {
     "id": 3,
     "category": "Good Bye",
-    "msg": "Good, timeOfDay firstName.Thank you for staying with company! We enjoyed having you; please come back soon!"
+    "msg": "Good timeOfDay firstName.Thank you for staying with company! We enjoyed having you; please come back soon!"
   }
 ]

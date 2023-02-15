@@ -57,6 +57,7 @@ router.post("/form", (req, res) => {
   const companyId = req.body.companyId;
   const msgCategoryId = req.body.msgCategoryId;
 
+  let currentTime = new Date().getHours();
   let guest;
   let company;
   let template;
@@ -80,18 +81,69 @@ router.post("/form", (req, res) => {
   for (let index = 0; index < msgTemplates.length; index++) {
     if (msgTemplates[index].id == msgCategoryId) {
       template = msgTemplates[index].msg;
+      break;
     }
   }
 
-  console.log(guest, company, template);
-  console.log(
-    template
-      .replace("firstName", guest.firstName)
-      .replace("company", company.company)
-      .replace("roomNumber", guest.reservation.roomNumber)
-  );
+  let timeOfDay = getTimeOfDate(currentTime, company.timezone);
+  console.log(`should return even: ${timeOfDay}`);
 
-  res.sendStatus(200);
+  // console.log(
+  //   template
+  //     .replace("firstName", guest.firstName)
+  //     .replace("company", company.company)
+  //     .replace("roomNumber", guest.reservation.roomNumber)
+  //     .replace("timeOfDay", timeOfDay)
+  // );
+
+  let msg = generateMsg(template, company, guest, timeOfDay, msgCategoryId);
+
+  res.send({ generateMsg: msg });
 });
+
+//
+function getTimeOfDate(currentTimeInHour, companyTimeZone) {
+  companyCurrentTimeInHour = currentTimeInHour;
+
+  switch (companyTimeZone) {
+    case "US/Eastern":
+      companyCurrentTimeInHour += 1;
+      break;
+    case "US/Pacific":
+      companyCurrentTimeInHour -= 2;
+      break;
+    default:
+      companyCurrentTimeInHour;
+      break;
+  }
+
+  if (companyCurrentTimeInHour < 12) {
+    return "morning";
+  } else if (companyCurrentTimeInHour < 18) {
+    return "afternoon";
+  } else {
+    return "evening";
+  }
+}
+
+function generateMsg(template, company, guest, timeOfDay, msgCategoryId) {
+  switch (msgCategoryId) {
+    case "1":
+      return template
+        .replace("firstName", guest.firstName)
+        .replace("company", company.company)
+        .replace("roomNumber", guest.reservation.roomNumber)
+        .replace("timeOfDay", timeOfDay);
+
+    case "2":
+      return "words";
+
+    case "3":
+      return "words";
+
+    default:
+      return "words";
+  }
+}
 
 module.exports = router;

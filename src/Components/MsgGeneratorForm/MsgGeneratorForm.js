@@ -86,7 +86,7 @@ export const MsgGeneratorForm = () => {
       },
     })
       .then((response) => {
-        console.log(`Post send: ${response.status}`);
+        console.log(`Post got data back: ${response.data.generateMsg}`);
       })
       .catch((err) => {
         console.log(`Error with post request: ${err}`);
