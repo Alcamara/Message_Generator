@@ -41,4 +41,12 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/form", (req, res) => {
+  const guestId = req.body.guestId;
+  const companyId = req.body.companyId;
+  const msgCategoryId = req.body.msgCategoryId;
+  console.log(`it worked ${guestId}, ${companyId}, ${msgCategoryId}`);
+  res.sendStatus(200);
+});
+
 module.exports = router;

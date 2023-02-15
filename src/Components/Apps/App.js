@@ -1,5 +1,6 @@
 import "./App.css";
-import { useEffect } from "react";
+import { MsgGeneratorForm } from "../MsgGeneratorForm/MsgGeneratorForm";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
       url: "/api",
     })
       .then((results) => {
-        console.log(results);
+        console.log(results.data);
       })
       .catch((err) => {
         console.log(`Error with axios get: ${err.response.data}`);
@@ -18,9 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>This is the beginning</p>
-      </header>
+      <MsgGeneratorForm />
     </div>
   );
 }
