@@ -136,10 +136,17 @@ function generateMsg(template, company, guest, timeOfDay, msgCategoryId) {
         .replace("timeOfDay", timeOfDay);
 
     case "2":
-      return "words";
+      return template
+        .replace("timeOfDay", timeOfDay)
+        .replace("firstName", guest.firstName)
+        .replace("company", company.company)
+        .replace("endTimestamp", Date(guest.reservation.endTimestamp)); //
 
     case "3":
-      return "words";
+      return template
+        .replace("timeOfDay", timeOfDay)
+        .replace("firstName", guest.firstName)
+        .replace("company", company.company);
 
     default:
       return "words";
