@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Form.css";
 
-export const MsgGeneratorForm = () => {
+export const MsgGeneratorForm = ({ getMsg }) => {
   //guest list and useEffect
   const [guestList, setGuestList] = useState(null);
   useEffect(() => {
@@ -86,7 +86,7 @@ export const MsgGeneratorForm = () => {
       },
     })
       .then((response) => {
-        console.log(`Post got data back: ${response.data.generateMsg}`);
+        getMsg(response.data.generateMsg);
         setForm({
           guestId: "0",
           companyId: "0",
