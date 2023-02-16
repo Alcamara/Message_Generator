@@ -6,12 +6,12 @@
   },
   {
     "id": 2,
-    "category": "Checkout Remainder",
-    "msg": "Good timeOfDay firstName. I hope you are enjoying your stay with us at company! Just a friendly remainder that checkout is at 11:00 am. If you need to extend your stay please reach out the front deck. Enjoy the rest of your stay"
+    "category": "Checkout",
+    "msg": "Good timeOfDay firstName. I hope you are enjoying your stay with us at company! Checkout is at 11:00 am. Please contact the front desk if you need to extend your stay."
   },
   {
     "id": 3,
-    "category": "Good Bye",
+    "category": "Thank You",
     "msg": "Good timeOfDay firstName. Thank you for staying at company! Please come back soon!"
   }
 ]
