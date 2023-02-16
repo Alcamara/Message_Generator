@@ -197,7 +197,7 @@ export const MsgGeneratorForm = ({ getMsg }) => {
       </button>
       <button
         onClick={() => {
-          if (formType == 0) {
+          if (formType === 0) {
             setFormType(1);
           } else {
             setFormType(0);
@@ -264,7 +264,7 @@ export const MsgGeneratorForm = ({ getMsg }) => {
       </button>
       <button
         onClick={() => {
-          if (formType == 0) {
+          if (formType === 0) {
             setFormType(1);
           } else {
             setFormType(0);
@@ -276,9 +276,9 @@ export const MsgGeneratorForm = ({ getMsg }) => {
     </div>
   );
 
-  return guestList == null && companies == null && msgCategories == null ? (
+  return guestList === null && companies === null && msgCategories === null ? (
     <div>Loading</div>
-  ) : formType == 0 ? (
+  ) : formType === 0 ? (
     formSection
   ) : (
     formSection2
