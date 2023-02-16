@@ -6,6 +6,10 @@ const guests = require("../../public/Guests.json");
 const companies = require("../../public/Companies.json");
 const msgTemplates = require("../../public/MsgTemplates.json");
 
+/**
+ *  GET routes
+ */
+
 router.get("/guests", (req, res) => {
   const guestList = [];
 
@@ -52,6 +56,10 @@ router.get("/categories", (req, res) => {
   });
 });
 
+/**
+ * POST Routes
+ */
+
 router.post("/form", (req, res) => {
   const guestId = req.body.guestId;
   const companyId = req.body.companyId;
@@ -84,8 +92,6 @@ router.post("/form2", (req, res) => {
       .replaceAll("company", company.company)
       .replaceAll("city", company.city),
   };
-
-  console.log(newMsg);
 
   res.send(newMsg);
 });

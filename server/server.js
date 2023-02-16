@@ -11,10 +11,6 @@ app.use(express.static("build"));
 //routes
 app.use("/api", FormRouter);
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
-
 app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);
 });
