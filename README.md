@@ -11,6 +11,9 @@ _Duration: 1 Day Sprint_
       <li>
         To build the User Interface, I used React because it is easy to create reusable components and pass data between them.
       </li>
+      <li>
+        I added conditional statements in sendForm functions to ensure valid data posts to the server.
+      </li>
     </ul>
   </li>
   <li>
