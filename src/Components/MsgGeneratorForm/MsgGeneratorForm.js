@@ -89,51 +89,63 @@ export const MsgGeneratorForm = ({ getMsg }) => {
   };
 
   const sendForm = () => {
-    axios({
-      method: "POST",
-      url: "/api/form",
-      data: {
-        companyId: form.companyId,
-        guestId: form.guestId,
-        msgCategoryId: form.msgCategoryId,
-      },
-    })
-      .then((response) => {
-        getMsg(response.data.generateMsg);
-        setForm({
-          guestId: "0",
-          companyId: "0",
-          msgCategoryId: "0",
-        });
+    if (
+      form.companyId !== "0" &&
+      form.guestId !== "0" &&
+      form.msgCategoryId !== "0"
+    ) {
+      axios({
+        method: "POST",
+        url: "/api/form",
+        data: {
+          companyId: form.companyId,
+          guestId: form.guestId,
+          msgCategoryId: form.msgCategoryId,
+        },
       })
-      .catch((err) => {
-        console.log(`Error with post request: ${err}`);
-      });
+        .then((response) => {
+          getMsg(response.data.generateMsg);
+          setForm({
+            guestId: "0",
+            companyId: "0",
+            msgCategoryId: "0",
+          });
+        })
+        .catch((err) => {
+          console.log(`Error with post request: ${err}`);
+        });
+    } else {
+      alert("All field must be complete in order to generate message!");
+    }
   };
 
   const sendForm2 = () => {
-    axios({
-      method: "POST",
-      url: "/api/form2",
-      data: {
-        companyId: form.companyId,
-        guestId: form.guestId,
-        text: text.text,
-      },
-    })
-      .then((response) => {
-        getMsg(response.data.msg);
-
-        setForm({
-          guestId: "0",
-          companyId: "0",
-          msgCategoryId: "0",
-        });
-        setText({ text: "" });
+    if (form.companyId !== "0" && form.guestId !== "0" && text.text !== "") {
+      axios({
+        method: "POST",
+        url: "/api/form2",
+        data: {
+          companyId: form.companyId,
+          guestId: form.guestId,
+          text: text.text,
+        },
       })
-      .catch((err) => {
-        console.log(`Error with post request: ${err}`);
-      });
+        .then((response) => {
+          getMsg(response.data.msg);
+
+          setForm({
+            guestId: "0",
+            companyId: "0",
+            msgCategoryId: "0",
+          });
+          setText({ text: "" });
+        })
+        .catch((err) => {
+          console.log(`Error with post request: ${err}`);
+        });
+    } else {
+      alert("All field must be complete in order to generate message!");
+    }
   };
 
   const formSection = (
