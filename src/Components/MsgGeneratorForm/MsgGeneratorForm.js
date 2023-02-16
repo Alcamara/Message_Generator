@@ -66,6 +66,10 @@ export const MsgGeneratorForm = ({ getMsg }) => {
     msgCategoryId: "0",
   });
 
+  /*
+   event handlers
+  */
+
   const updateGuestId = (event) => {
     console.log(event.target.value);
     setForm((prev) => ({
@@ -147,6 +151,10 @@ export const MsgGeneratorForm = ({ getMsg }) => {
       alert("All field must be complete in order to generate message!");
     }
   };
+
+  /*
+    JSX for forms
+  */
 
   const formSection = (
     <div className="form">
