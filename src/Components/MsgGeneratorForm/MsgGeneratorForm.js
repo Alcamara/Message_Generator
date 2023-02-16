@@ -122,7 +122,7 @@ export const MsgGeneratorForm = ({ getMsg }) => {
       },
     })
       .then((response) => {
-        //getMsg(response.data.generateMsg);
+        getMsg(response.data.msg);
 
         setForm({
           guestId: "0",
@@ -211,7 +211,7 @@ export const MsgGeneratorForm = ({ getMsg }) => {
 
   const formSection2 = (
     <div className="form">
-      <h2>Guest Msg Generator</h2>
+      <h2>Custom Guest Msg</h2>
       <div className="default">
         <div className="dropdown">
           <label>

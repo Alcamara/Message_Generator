@@ -58,43 +58,11 @@ router.post("/form", (req, res) => {
   const msgCategoryId = req.body.msgCategoryId;
 
   let currentTime = new Date().getHours();
-  let guest;
-  let company;
-  let template;
-
-  console.log(`it worked ${guestId}, ${companyId}, ${msgCategoryId}`);
-
-  for (let index = 0; index < guests.length; index++) {
-    if (guests[index].id == guestId) {
-      guest = guests[index];
-      break;
-    }
-  }
-
-  for (let index = 0; index < companies.length; index++) {
-    if (companies[index].id == companyId) {
-      company = companies[index];
-      break;
-    }
-  }
-
-  for (let index = 0; index < msgTemplates.length; index++) {
-    if (msgTemplates[index].id == msgCategoryId) {
-      template = msgTemplates[index].msg;
-      break;
-    }
-  }
+  let guest = getGuestObj(guestId, guests);
+  let company = getCompanyObj(companyId, companies);
+  let template = getMsgTemplate(msgCategoryId, msgTemplates);
 
   let timeOfDay = getTimeOfDate(currentTime, company.timezone);
-  console.log(`should return even: ${timeOfDay}`);
-
-  // console.log(
-  //   template
-  //     .replace("firstName", guest.firstName)
-  //     .replace("company", company.company)
-  //     .replace("roomNumber", guest.reservation.roomNumber)
-  //     .replace("timeOfDay", timeOfDay)
-  // );
 
   let msg = generateMsg(template, company, guest, timeOfDay, msgCategoryId);
 
@@ -106,11 +74,22 @@ router.post("/form2", (req, res) => {
   const companyId = req.body.companyId;
   const text = req.body.text;
 
-  console.log(guestId, companyId, text);
-  res.sendStatus(200);
+  const company = getCompanyObj(companyId, companies);
+  let guest = getGuestObj(guestId, guests);
+
+  const newMsg = {
+    msg: text
+      .replaceAll("firstName", guest.firstName)
+      .replaceAll("lastName", guest.lastName)
+      .replaceAll("company", company.company)
+      .replaceAll("city", company.city),
+  };
+
+  console.log(newMsg);
+
+  res.send(newMsg);
 });
 
-//
 function getTimeOfDate(currentTimeInHour, companyTimeZone) {
   companyCurrentTimeInHour = currentTimeInHour;
 
@@ -158,6 +137,31 @@ function generateMsg(template, company, guest, timeOfDay, msgCategoryId) {
 
     default:
       return "words";
+  }
+}
+
+// functions that find obj or strings form json files
+function getCompanyObj(companyId, companies) {
+  for (let index = 0; index < companies.length; index++) {
+    if (companies[index].id == companyId) {
+      return companies[index];
+    }
+  }
+}
+
+function getGuestObj(guestId, guests) {
+  for (let index = 0; index < guests.length; index++) {
+    if (guests[index].id == guestId) {
+      return guests[index];
+    }
+  }
+}
+
+function getMsgTemplate(msgCategoryId, msgTemplates) {
+  for (let index = 0; index < msgTemplates.length; index++) {
+    if (msgTemplates[index].id == msgCategoryId) {
+      return msgTemplates[index].msg;
+    }
   }
 }
 
