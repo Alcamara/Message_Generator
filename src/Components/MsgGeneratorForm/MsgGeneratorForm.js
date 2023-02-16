@@ -267,6 +267,21 @@ export const MsgGeneratorForm = ({ getMsg }) => {
           </label>
         </div>
       </div>
+      <div>
+        <p>
+          Use the variable keys below to auto-populate guest and hotel
+          information in your custom message output.{" "}
+          <em>
+            Note: variables are <strong>case-sensitive</strong>
+          </em>
+        </p>
+        <p>firstName = Guest first name</p>
+        <p>lastName = Guest last name</p>
+        <p>company = Hotel Name</p>
+        <p>roomNumber = Room number</p>
+        <p>checkInDate = Date when guest check-in</p>
+        <p>checkInDate = Date when guest checkout</p>
+      </div>
       <div className="text">
         <input
           value={text.text}

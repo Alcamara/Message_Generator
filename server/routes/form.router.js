@@ -90,7 +90,15 @@ router.post("/form2", (req, res) => {
       .replaceAll("firstName", guest.firstName)
       .replaceAll("lastName", guest.lastName)
       .replaceAll("company", company.company)
-      .replaceAll("city", company.city),
+      .replaceAll("city", company.city)
+      .replaceAll(
+        "checkInDate",
+        new Date(guest.reservation.startTimestamp * 1000).toDateString()
+      )
+      .replaceAll(
+        "checkOutDate",
+        new Date(guest.reservation.endTimestamp * 1000).toDateString()
+      ),
   };
 
   res.send(newMsg);
@@ -140,6 +148,11 @@ function generateMsg(template, company, guest, timeOfDay, msgCategoryId) {
         .replace("timeOfDay", timeOfDay)
         .replace("firstName", guest.firstName)
         .replace("company", company.company);
+    case "4":
+      return template
+        .replace("timeOfDay", timeOfDay)
+        .replace("firstName", guest.firstName)
+        .replace("roomNumber", guest.reservation.roomNumber);
 
     default:
       return "words";
