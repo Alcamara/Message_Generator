@@ -47,9 +47,7 @@ _Duration: 1 Day Sprint_
 
 ## Screen Shots
 
-<img src='https://github.com/Alcamara/Message_Generator/blob/main/public/MsgGenerator.gif' height='300'>
-
-<img src='https://github.com/Alcamara/Message_Generator/blob/main/public/customMsg.gif' height='300'>
+<img src='https://github.com/Alcamara/Message_Generator/blob/main/public/MsgGenerator2.gif' height='300'> <img src='https://github.com/Alcamara/Message_Generator/blob/main/public/customMsg2.gif' height='300'>
 
 ## Prerequistes
 
