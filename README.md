@@ -8,7 +8,9 @@ _Duration: 1 Day Sprint_
   <li>
     An overview of design decisions
     <ul>
-      <li></li>
+      <li>
+        To build the User Interface, I used React because it is easy to create reusable components and pass data between them.
+      </li>
     </ul>
   </li>
   <li>
@@ -39,6 +41,7 @@ _Duration: 1 Day Sprint_
 </ol>
 
 ## Prerequistes
+
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
