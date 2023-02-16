@@ -43,6 +43,8 @@ _Duration: 1 Day Sprint_
   </li>
 </ol>
 
+## Screen Shots
+
 ## Prerequistes
 
 Before you get started, make sure you have the following software installed on your computer:
