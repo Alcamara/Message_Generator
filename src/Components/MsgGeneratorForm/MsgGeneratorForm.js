@@ -280,7 +280,7 @@ export const MsgGeneratorForm = ({ getMsg }) => {
         <p>company = Hotel Name</p>
         <p>roomNumber = Room number</p>
         <p>checkInDate = Date when guest check-in</p>
-        <p>checkInDate = Date when guest checkout</p>
+        <p>checkOutDate = Date when guest checkout</p>
       </div>
       <div className="text">
         <input
